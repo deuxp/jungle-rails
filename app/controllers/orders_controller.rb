@@ -1,7 +1,12 @@
 class OrdersController < ApplicationController
 
   def show
+    # this finds the order
     @order = Order.find(params[:id])
+    #  puts "\n\naldalfaljflajfa\n\n",  @order
+    #  render :json => @order
+    #  render :json => @order.line_items
+    #  render :json => @order.line_items[0].product
   end
 
   def create
