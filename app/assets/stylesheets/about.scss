@@ -1,0 +1,23 @@
+.about-img {
+    position: absolute;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+.about-text {
+    padding: 2em;
+}
+
+.about-header {
+    margin-left: 1em;
+}
+
+.about-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #a94442;
+    color: white;
+    text-align: center;
+  }
