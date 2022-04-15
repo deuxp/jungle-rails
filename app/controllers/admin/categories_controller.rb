@@ -10,6 +10,13 @@ class Admin::CategoriesController < ApplicationController
     end
 
     def create
-        raise "you are saving your new category"
+        @category = Category.new(params[:category])
+
+        if @category.save
+            redirect_to [:admin, :categories], notice: 'Category created!'
+        else
+            # create anon new in  new 'action' to keep -> render :new from crashing
+            render :new
+        end
     end
 end
