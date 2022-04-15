@@ -6,8 +6,7 @@ class Admin::CategoriesController < ApplicationController
     end
 
     def new
-        raise "new Category Form"
-        # @category = Category.new    
+        @category = Category.new    
     end
 
     def create
