@@ -1,7 +1,6 @@
 class SessionsController < ApplicationController
     # GET /login
     def new
-        # @session = Session.new
     end
     
     # POST /login
