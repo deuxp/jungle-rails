@@ -20,11 +20,12 @@ Rails.application.routes.draw do
 
   resources :about, only: [:index]
 
-  resources :users, only: [:new, :create]
+  get 'signup', to: 'users#new', as: 
+  post 'users', to: 'users#create'
 
   # is there a slicker way to have custom REST endpoints and path helpers
-  delete 'logout', to: 'sessions#destroy', as: :logout
-  get 'login', to: 'sessions#new', as: :new_session
+  get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
+  get 'logout', to: 'sessions#destroy'
   
 end
