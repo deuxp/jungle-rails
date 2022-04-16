@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   resources :about, only: [:index]
 
-  get 'signup', to: 'users#new', as: 
+  get 'signup', to: 'users#new'
   post 'users', to: 'users#create'
 
   # is there a slicker way to have custom REST endpoints and path helpers
