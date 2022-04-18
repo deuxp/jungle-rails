@@ -5,7 +5,7 @@
     <% if current_user %>
       Signed in as <%= current_user.first_name %> | <%= link_to "Logout", '/logout' %>
     <% else %>
-      <%= link_to 'Login', login_path %> | <%= link_to 'Signup', signup_path %>
+      <%= link_to 'Login', login_path %> | <%= link_to 'Sign up', users_path %>
     <% end %>
     </div>
     
