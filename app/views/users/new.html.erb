@@ -2,13 +2,19 @@
 
 <h1 class='login-header' >Signup!</h1>
 
+
 <img class='login-img' src=<%= @image %> alt="green">
 
 <%= form_for :user, url: '/users' do |f| %>
 
-  Name:
+  first_name:
   <div class="form-group">
-    <%= f.text_field :name %>
+    <%= f.text_field :first_name %>
+  </div>
+
+  last_name:
+  <div class="form-group">
+    <%= f.text_field :last_name %>
   </div>
 
   Email:  
