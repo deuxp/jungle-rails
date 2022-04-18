@@ -2,6 +2,19 @@
 
 <h1 class='login-header' >Signup!</h1>
 
+<% if @user.errors.any? %>
+    <div class="alert alert-danger" role="alert" >
+      <h4>
+        <%= pluralize(@user.errors.count, "error") %> prohibited
+        this user from being saved:
+      </h4>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
 
 <img class='login-img' src=<%= @image %> alt="green">
 
