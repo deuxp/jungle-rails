@@ -1,8 +1,4 @@
 class UsersController < ApplicationController
-  # def index
-  #   redirect_to new_user_url
-  # end
-  
   # GET /signup
   def new
     @user = User.new
