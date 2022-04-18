@@ -20,8 +20,16 @@ Rails.application.routes.draw do
 
   resources :about, only: [:index]
 
-  get 'signup', to: 'users#new'
-  post 'users', to: 'users#create'
+  # new and create should have same route name to avooid bugs with refreshing the page ? 
+  # get 'users', to: 'users#new'
+  # post 'users', to: 'users#create'
+  # resources :users, only: [ :index, :new, :create]
+  resources :users, only: [:new, :create]
+  get '/users', to: redirect('/users/new')
+
+  # resources :users, only: [:new] do
+  #   post :create
+  # end
 
   # is there a slicker way to have custom REST endpoints and path helpers
   get 'login', to: 'sessions#new'
