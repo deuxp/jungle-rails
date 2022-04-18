@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   # GET /signup
   def new
-    # user = User.new
+    ## 5
+    @image = Product.where(id: 5)[0].image
   end
 
   # POST /users
