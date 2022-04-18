@@ -6,12 +6,12 @@ class SessionsController < ApplicationController
     
     # POST /login
     def create
-        user = User.find_by_email(params[login_path][:email])
-        if user && user.authenticate(params[login_path][:password])
-            session[:user_id] = user.id
+        @user = User.find_by_email(params[login_path][:email])
+        if @user && @user.authenticate(params[login_path][:password])
+            session[:user_id] = @user.id
             redirect_to :root
         else
-            redirect_to login_path
+            redirect_to login_path, notice: 'Invaild email/password credentials'
         end
     end
 
