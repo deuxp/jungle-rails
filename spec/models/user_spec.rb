@@ -18,9 +18,9 @@ RSpec.describe User, type: :model do
     @unique_user.save
   end
     
-    after(:each) do
-      @user.destroy
-    end
+  after(:each) do
+    @user.destroy
+  end
 
   # -------------------------- end of setup tear-down -------------------------- #
     
@@ -81,9 +81,6 @@ RSpec.describe User, type: :model do
       expect(save).to be false
       expect(errors).to include("Password confirmation doesn't match Password")
     end
-    
-
-      
   end
     
     # ------------------------------ context: EMAIL ------------------------------ #
@@ -99,7 +96,6 @@ RSpec.describe User, type: :model do
       @user.save
       errors = @user.errors.full_messages
       expect(errors).to include("Email can't be blank")
-        
     end
     
     it 'should accept a email of the correct format only' do
@@ -140,7 +136,6 @@ RSpec.describe User, type: :model do
         errors = @user.errors.full_messages
         expect(errors).to include("Email has already been taken")
       end
-      
     end
       
       # ---------------------------- context: USER NAME ---------------------------- #
