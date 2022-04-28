@@ -5,6 +5,8 @@ require 'capybara/rspec'
 require 'capybara/poltergeist'
 ENV['RAILS_ENV'] ||= 'test'
 
+Capybara.javascript_driver = :poltergeist
+
 require File.expand_path('../config/environment', __dir__)
 
 # Prevent database truncation if the environment is production
