@@ -1,9 +1,13 @@
 require 'rails_helper'
 
-RSpec.feature "ProductDetails", type: :feature do
+def open_asset(file_name)
+  File.open(Rails.root.join('db', 'seed_assets', file_name))
+end
+
+RSpec.feature "A visitor on the home page", type: :feature, js: true do
+
   before :each do
     @category = Category.create! name: 'Apparel'
-
     10.times do |n|
       @category.products.create!(
         name: Faker::Hipster.sentence(3),
@@ -13,21 +17,17 @@ RSpec.feature "ProductDetails", type: :feature do
         price: 64.99
       )
     end
-
-    scenario "Visit the product info page" do
-      # ------------------------------------ ACT ----------------------------------- #
-      visit root_path
-
-      # -------------------------- click product info link ------------------------- #
-      
+  end
   
-      # ------------------------------ DEBUG / VERIFY ------------------------------ #
-      save_screenshot
-  
-      # -------------------------- CSS check, show product ------------------------- #
-      expect(page).to have_css '???'
-      
-    end
-    
+  scenario "Can click on a product and redirect to the product details" do
+    # ------------------------------------ ACT ----------------------------------- #
+    visit root_path
+    first(".btn-default").click
+    # ------------------------------ DEBUG / VERIFY ------------------------------ #
+    save_screenshot
+    # ---------------------------- CHECK for PRODUCTS ---------------------------- #
+    expect(page).to have_css 'section.products-show'
+    puts page.html
+    save_screenshot
   end
 end
