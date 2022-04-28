@@ -9,9 +9,9 @@ RSpec.describe User, type: :model do
   # Persistent user to compare uneiqueness
   before(:all) do
     @unique_user = User.new({
-      first_name: 'Jesse',
-      last_name: 'Pinkman',
-      email: 'jp@qmail.com',
+      first_name: 'Kim',
+      last_name: 'Wexler',
+      email: 'KW@qmail.com',
       password: 'jp0000',
       password_confirmation: 'jp0000'
       })
@@ -157,7 +157,7 @@ RSpec.describe User, type: :model do
       @user = User.new({
         first_name: 'Gus',
         last_name: 'Fring',
-        email: 'gf@qmail.com',
+        email: 'gf@qMAIl.com',
         password: 'gf0000',
         password_confirmation: 'gf0000'
       })
@@ -166,33 +166,50 @@ RSpec.describe User, type: :model do
         expect(saved).to be true       
         expect(login.id).to eq(@user.id)
       end
+
+      it "should still login even with surrounding whitespace" do
+        @user = User.new({
+          first_name: 'Gus',
+          last_name: 'Fring',
+          email: 'gf@qmail.com',
+          password: 'gf0000',
+          password_confirmation: 'gf0000'
+        })
+          saved = @user.save
+          login = User.authenticate_with_credentials('  gf@qmail.coM ', 'gf0000')
+          expect(saved).to be true       
+          expect(login).to_not be nil
+          expect(login.id).to eq(@user.id)
+      end
+      
+      
       
     end
       
-      # ---------------------------- context: #user ---------------------------- #
-    context "User Name" do
-      it 'should have a first_name' do
-        @user = User.new({
-          last_name: 'White',
-          email: 'ww@qmail.com',
-          password: 'ww0000',
-          password_confirmation: 'ww0000'
-        })
-        @user.save          
-        errors = @user.errors.full_messages
-        expect(errors).to include("First name can't be blank")
-      end
-      it 'should have a last_name' do
-        @user = User.new({
-          first_name: 'Walter',
-          email: 'ww@qmail.com',
-          password: 'ww0000',
-          password_confirmation: 'ww0000'
-        })
-        @user.save          
-        errors = @user.errors.full_messages
-        expect(errors).to include("Last name can't be blank")
-      end
+  # ---------------------------- context: #user ---------------------------- #
+  context "User Name" do
+    it 'should have a first_name' do
+      @user = User.new({
+        last_name: 'White',
+        email: 'ww@qmail.com',
+        password: 'ww0000',
+        password_confirmation: 'ww0000'
+      })
+      @user.save          
+      errors = @user.errors.full_messages
+      expect(errors).to include("First name can't be blank")
+    end
+    it 'should have a last_name' do
+      @user = User.new({
+        first_name: 'Walter',
+        email: 'ww@qmail.com',
+        password: 'ww0000',
+        password_confirmation: 'ww0000'
+      })
+      @user.save          
+      errors = @user.errors.full_messages
+      expect(errors).to include("Last name can't be blank")
+    end
   end
 
   # ---------------------------------------------------------------------------- #
